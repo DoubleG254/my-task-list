@@ -8,7 +8,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(()=>{
-    fetch("http://localhost:3000/tasks")
+    fetch("https://tasks-5ztz.onrender.com/")
     .then(resp=>resp.json())
     .then((data)=>setTasks(data))
   },[])
