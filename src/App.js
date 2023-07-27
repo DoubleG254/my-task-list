@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Tasklist from "./tasklist";
+import Form from "./form";
+
 
 function App() {
+  
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/tasks")
+    .then(resp=>resp.json())
+    .then((data)=>setTasks(data))
+  },[])
+ 
+
+  function addTask(newTask) {
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+  }
+
+  function deleteTask(id) {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="bg-blue-100 text-green-700  mt-12 w-full ">
+      <header className="font-bold uppercase mb-4 text-2xl flex justify-center">
+        My Tasks
       </header>
+     <div className="bg-blue-400">
+     <Form addTask={addTask} />
+      <Tasklist tasks={tasks} deleteTask={deleteTask} />
+     </div>
     </div>
   );
 }
