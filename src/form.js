@@ -7,7 +7,7 @@ function Form({addTask}){
     function handleSubmit(e){
          e.preventDefault();
          
-            fetch("https://tasks-5ztz.onrender.com/",{
+            fetch("https://tasks-5ztz.onrender.com/tasks",{
                 method:"POST",
                 headers:{'Content-Type': "application/json"},
                 body:JSON.stringify(newTask)

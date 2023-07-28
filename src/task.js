@@ -3,7 +3,7 @@ import React from "react";
 function Task({taske,deleteTask}){
     const {id,task}=taske
     function handleDlete(){
-        fetch(` https://tasks-5ztz.onrender.com/${id}`,{
+        fetch(` https://tasks-5ztz.onrender.com/tasks/${id}`,{
             method:"DELETE"
         })
         deleteTask(id)
